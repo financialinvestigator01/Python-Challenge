@@ -7,18 +7,20 @@ csvpath = os.path.join('Resources', 'budget_data.csv')
 
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
-    csv_header = next(csvreader)
+    csv_header = next(csvreader) #skip the header row
 
-    # Calculate the total number of months in the dataset
+    # initialize variables and perform calculations
     counter = 0
+    net_profit_loss = 0
     for row in csvreader:
-        counter = counter + 1
-    
+        counter = counter + 1 # Calculate the total number of months in the dataset
+        net_profit_loss = float(row[1]) + (float(net_profit_loss)) # Calculate the net total amount of "Profit/Losses" over the entire period
+        
+     
     print("Total Months: ", counter)
+    print("Net Profit/Loss: $", net_profit_loss)
 
 
-
-# Calculate the net total amount of "Profit/Losses" over the entire period
 # Calculate the average of the changes in "Profit/Losses" over the entire period
 # Calculate the greatest increase in profits (date and amount) over the entire period
 # Calculate the greatest decrease in losses (date and amount) over the entire period

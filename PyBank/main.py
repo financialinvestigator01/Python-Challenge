@@ -2,9 +2,22 @@
 import os
 import csv
 
-
 # Point to and read budget_data.csv from Resources folder
-# Calculate the total number of months in the dataset
+csvpath = os.path.join('Resources', 'budget_data.csv')
+
+with open(csvpath, newline='') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+    csv_header = next(csvreader)
+
+    # Calculate the total number of months in the dataset
+    counter = 0
+    for row in csvreader:
+        counter = counter + 1
+    
+    print("Total Months: ", counter)
+
+
+
 # Calculate the net total amount of "Profit/Losses" over the entire period
 # Calculate the average of the changes in "Profit/Losses" over the entire period
 # Calculate the greatest increase in profits (date and amount) over the entire period

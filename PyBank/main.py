@@ -43,14 +43,27 @@ with open(csvpath, newline='') as csvfile:
     average_change_PL = float( (lastpl - firstpl) / (counter -1) ) # Calculate the average of the changes in "Profit/Losses" over the entire period
     average_change_PL = round(average_change_PL, 2)
 
-    print("Financial Analysis")
-    print("----------------------------------")
-    print("Total Months: ", counter)
-    print("Net Profit/Loss: $", net_profit_loss)
-    print("Average of changes in Profit/Losses: $", average_change_PL)
-    print(f"Greatest Increase in Profits: {GreatestProfitIncrease_month}: (${GreatestProfitIncrease})")
-    print(f"Greatest Decrease in Profits: {GreatestLossDecrease_month}: (${GreatestLossDecrease})")
+    print(f"Financial Analysis\n") # output to terminal
+    print(f"----------------------------------\n") # output to terminal
+    print(f"Total Months: {counter}\n") # output to terminal
+    print(f"Net Profit/Loss: ${net_profit_loss}\n") # output to terminal
+    print(f"Average of changes in Profit/Losses: ${average_change_PL}\n") #output to terminal
+    print(f"Greatest Increase in Profits: {GreatestProfitIncrease_month}: (${GreatestProfitIncrease})\n") #output to terminal
+    print(f"Greatest Decrease in Profits: {GreatestLossDecrease_month}: (${GreatestLossDecrease})\n") #output to terminal
 
+
+    # what file to write to
+    FinancialAnalysis_output = os.path.join("financial_analysis_output.txt")
+
+    with open(FinancialAnalysis_output, 'w', newline='') as textfile:
+        
+        print(f"Financial Analysis\n", file=textfile) # output to textfile
+        print(f"----------------------------------\n", file=textfile) # output to textfile    
+        print(f"Total Months: {counter}\n", file=textfile)# output to textfile        
+        print(f"Net Profit/Loss: ${net_profit_loss}\n", file=textfile) # output to textfile        
+        print(f"Average of changes in Profit/Losses: ${average_change_PL}\n", file=textfile) #output to textfile        
+        print(f"Greatest Increase in Profits: {GreatestProfitIncrease_month}: (${GreatestProfitIncrease})\n", file=textfile) #output to textfile        
+        print(f"Greatest Decrease in Profits: {GreatestLossDecrease_month}: (${GreatestLossDecrease})\n", file=textfile) #output to textfile
 
 
 # Calculate the greatest increase in profits (date and amount) over the entire period

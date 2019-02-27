@@ -30,11 +30,11 @@ with open(csvpath, newline='') as csvfile:
         amount = row[1] # amount placeholder
         rowamount = float(amount)
         difference = rowamount - holder
-        if GreatestProfitIncrease < difference:
+        if GreatestProfitIncrease < difference: # Calculate the greatest increase in profits (date and amount) over the entire period
             GreatestProfitIncrease = difference
             GreatestProfitIncrease_month = month
         
-        if GreatestLossDecrease > difference:
+        if GreatestLossDecrease > difference: # Calculate the greatest decrease in losses (date and amount) over the entire period
             GreatestLossDecrease = difference
             GreatestLossDecrease_month = month
         
@@ -66,8 +66,8 @@ with open(csvpath, newline='') as csvfile:
         print(f"Greatest Decrease in Profits: {GreatestLossDecrease_month}: (${GreatestLossDecrease})\n", file=textfile) #output to textfile
 
 
-# Calculate the greatest increase in profits (date and amount) over the entire period
-# Calculate the greatest decrease in losses (date and amount) over the entire period
+
+
 # your analysis should look similar to the one below:
 #     Financial Analysis
 #     ----------------------------

@@ -3,16 +3,36 @@
 import os
 import csv
 
+
 # Point to and read election_data.csv from Resources folder
-csvpath = os.path.join('Resources', 'election_data.csv')
+csvpath = os.path.join('Resources', 'Book1.csv')
 
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header = next(csvreader) #skip the header row
 
     # file contains Voter ID, County, Candidate columns
+    # initialize variables and initial conditions
+       
+    numberholder = 0
+    candidate_dict = {} # creates an empty dictionary, will be used
+                        # to hold the candidate names as keys, and number of votes
+                        # as values
 
-#    The total number of votes cast
+    for row in csvreader:
+        numberholder += 1 # The total number of votes cast
+        if (row[2] in candidate_dict):      # checks to see if a candidate has been
+            candidate_dict[row[2]] += 1     # voted for yet. If yes, keeps a running
+        else:                               # total.
+            candidate_dict[row[2]] = 1      # if not, adds the new candidate to the 
+                                            # dictionary with 1 vote.
+
+             
+# new for loop to determine winner
+     
+
+
+print("values: ", candidate_dict)
 
 #    A complete list of candidates who received votes
 
@@ -21,6 +41,13 @@ with open(csvpath, newline='') as csvfile:
 #    The total number of votes each candidate won
 
 #    The winner of the election based on popular vote.
+
+
+print("Election Results")
+print("------------------------------")
+print("Total number of votes: ", numberholder)
+print("------------------------------")
+
 
 # As an example, your analysis should look similar to the one below:
 

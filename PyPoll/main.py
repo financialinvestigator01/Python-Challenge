@@ -5,7 +5,7 @@ import csv
 
 
 # Point to and read election_data.csv from Resources folder
-csvpath = os.path.join('Resources', 'Book1.csv')
+csvpath = os.path.join('Resources', 'election_data.csv')
 
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -28,21 +28,58 @@ with open(csvpath, newline='') as csvfile:
             candidate_dict[row[2]] = 1      # if not, adds the new candidate to the 
                                             # dictionary with 1 vote.
 
-print("Election Results")
-print("------------------------------")
-print("Total number of votes: ", votes)
-print("------------------------------")
+
+
+
+
+
+# Print to terminal ####################################
+                                                    ####
+print("Election Results")                           ####
+print("------------------------------")             ####
+print("Total number of votes: ", votes)             ####
+print("------------------------------")             ####
+                                                    ####
+# End Print to terminal ################################
+
+Election_Results_output = os.path.join("Election_Results_output.txt")
+
+with open(Election_Results_output, 'w', newline='') as textfile:
+    # Print to text file #########################################################
+                                                                              ####
+    textfile.write("Election Results" + os.linesep)                           ####
+    textfile.write("------------------------------" + os.linesep)             ####
+    textfile.write("Total number of votes: %d" % votes + os.linesep)         ####
+    textfile.write("------------------------------" + os.linesep)             ####
+                                                                              ####
+# End Print to textfile      #####################################################
+
+
 
 winner = 0
+winning_candidate = "John"
 
 for key, value in candidate_dict.items():
     percentage_votes = value / votes                            # The percentage of votes each candidate won
     percentage_votes = "{:.3%}".format(percentage_votes)        # Percentage formatting
     print("%s : %s  (""%d"")"%(key,percentage_votes, value))    # correct printing format
+    with open(Election_Results_output, 'a', newline='') as textfile:                    # print to text file
+        textfile.write("%s : %s  (""%d"")" %(key,percentage_votes, value) + os.linesep) # print to text file
     
-  
-#    The winner of the election based on popular vote.
+    if value >= winner:                                         # The winner of the election based on popular vote.
+        winner = value
+        winning_candidate = key
+    
+print("------------------------------")      # print to terminal
+print("The winner is: ", winning_candidate)  # print to terminal
+print("------------------------------")      # print to terminal
 
+with open(Election_Results_output, 'a', newline='') as textfile:
+        textfile.write("------------------------------" + os.linesep)      # print to text file
+        textfile.write("The winner is: %s" % winning_candidate + os.linesep)  # print to text file
+        textfile.write("------------------------------" + os.linesep)      # print to text file
+
+    
 
 # As an example, your analysis should look similar to the one below:
 
